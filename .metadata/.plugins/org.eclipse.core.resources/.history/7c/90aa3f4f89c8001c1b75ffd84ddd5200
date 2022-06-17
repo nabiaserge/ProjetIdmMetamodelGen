@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<www.Cercle.com:Achitecture
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:www.Cercle.com="cercle"
+    xsi:schemaLocation="cercle Circle_Metamodel.ecore">
+  <cercle cle="3"
+      rayon="5.0"
+      couleur="rouge"
+      source="//@relation[cible=['2'],source=['1']]"
+      cible="//@relation[cible=['2'],source=['1']]"/>
+  <cercle cle="2"
+      rayon="7.0"
+      couleur="bleu"/>
+  <cercle cle="1"
+      rayon="10.0"
+      couleur="vert"/>
+  <relation>
+    <cible>2</cible>
+    <source>1</source>
+  </relation>
+</www.Cercle.com:Achitecture>

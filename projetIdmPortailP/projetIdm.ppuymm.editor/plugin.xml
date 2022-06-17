@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated PPUY1 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="ppuy1.presentation.ppuy1ModelWizardID"
+            name="%_UI_ppuy1ModelWizard_label"
+            class="ppuy1.presentation.ppuy1ModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ppuy1ModelFile.gif">
+         <description>%_UI_ppuy1ModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated PPUY1 -->
+      <editor
+            id="ppuy1.presentation.ppuy1EditorID"
+            name="%_UI_ppuy1Editor_label"
+            icon="icons/full/obj16/ppuy1ModelFile.gif"
+            extensions="ppuy1"
+            class="ppuy1.presentation.ppuy1Editor"
+            contributorClass="ppuy1.presentation.ppuy1ActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

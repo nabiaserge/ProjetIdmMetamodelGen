@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bootstrap:Page
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bootstrap="http://www.example.org/bootstrap"
+    xsi:schemaLocation="http://www.example.org/bootstrap ../../projetIdm.bootstrapmm/model/bootstrap.ecore"
+    name="Portail pedagogique">
+  <pagecontents
+      xsi:type="bootstrap:FluidContainer">
+    <pagecontents
+        xsi:type="bootstrap:Paragraphe">
+      <textelements
+          xsi:type="bootstrap:Text"/>
+    </pagecontents>
+  </pagecontents>
+  <pagecontents
+      xsi:type="bootstrap:FluidContainer">
+    <pagecontents
+        xsi:type="bootstrap:Navigation">
+      <navbar
+          xsi:type="bootstrap:Brand"/>
+    </pagecontents>
+  </pagecontents>
+  <pagecontents
+      xsi:type="bootstrap:FluidContainer">
+    <pagecontents
+        xsi:type="bootstrap:Paragraphe">
+      <textelements
+          xsi:type="bootstrap:Text"/>
+    </pagecontents>
+  </pagecontents>
+</bootstrap:Page>

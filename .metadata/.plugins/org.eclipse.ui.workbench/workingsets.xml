@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1650159896207_0" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1650159896221_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="org.eclipse.emf.cdo.explorer.ui.OthersWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1650532801262_3" label="Other CDO Checkouts" name="Other CDO Checkouts"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1654476536922_4" label="projet-master" name="projet-master">
+<item elementID="=acceleo.generation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1650159898759_2" label="Window Working Set" name="Aggregate for window 1650159898759"/>
+<mruList name="projet-master"/>
+</workingSetManager>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;html2bootstrap.qvto&apos; to &apos;transforms&apos;&#x0A;- Original project: &apos;ppuy2html2&apos;&#x0A;- Destination element: &apos;transforms&apos;&#x0A;- Original element: &apos;html2bootstrap.qvto&apos;" description="Copy file" element1="transforms/html2bootstrap.qvto" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1654913417676" target="/projetIdmPortailPedadogique/transformation/ppuy2html/transforms" units="0" version="1.0"/>
+</session>

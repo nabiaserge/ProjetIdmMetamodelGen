@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/CircleEMF/src" modelPluginID="CircleEMF" modelName="Circle_Metamodel"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>Circle_Metamodel.ecore</foreignModel>
+  <genPackages prefix="Cercle" disposableProviderFactory="true" ecorePackage="Circle_Metamodel.ecore#/">
+    <genClasses ecoreClass="Circle_Metamodel.ecore#//Cercle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Circle_Metamodel.ecore#//Cercle/cle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Circle_Metamodel.ecore#//Cercle/rayon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Circle_Metamodel.ecore#//Cercle/couleur"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Circle_Metamodel.ecore#//Cercle/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Circle_Metamodel.ecore#//Cercle/cible"/>
+    </genClasses>
+    <genClasses ecoreClass="Circle_Metamodel.ecore#//Achitecture">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Circle_Metamodel.ecore#//Achitecture/cercle"/>
+      <genOperations ecoreOperation="Circle_Metamodel.ecore#//Achitecture/decrire"/>
+    </genClasses>
+    <genClasses ecoreClass="Circle_Metamodel.ecore#//Relation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Circle_Metamodel.ecore#//Relation/cible"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Circle_Metamodel.ecore#//Relation/source"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

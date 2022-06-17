@@ -1,0 +1,208 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module generate.
+ */]
+[module generate('http://www.example.org/bootstrap','http://www.ppuy1.com')]
+
+[**
+ * The documentation of the template generateElement.
+ * @param aPage
+ */]
+[template public generateElement(aDepartement : PPUY1)]
+[comment @main/]
+[file ('index.html', false, 'UTF-8')]
+[aDepartement.generateHtmlHead()/]
+<body>
+[aDepartement.generateTopHeader()/]
+<div class="container">
+   <img class="img-responsive" src="./image/home.png" alt="Chania" width="100%" height="100%"> 
+</div>
+[aDepartement.generateNavbar()/]
+<main class="container">
+  <div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Le departement Informatique
+      </h3>
+
+      <article class="blog-post">
+		[for (departement : Departement | aDepartement.departement)]
+	  	[departement.description/]
+	    [/for]
+      </article>
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky">
+          <h4 class="fst-italic" style="text-align: center;">RESSOURCES</h4>
+          <ol class="list-unstyled mb-0">
+            <li><a href="#">March 2021</a></li>
+            <li><a href="#">February 2021</a></li>
+          </ol>
+      </div>
+    </div>
+  </div>
+
+</main>  
+[aDepartement.generateFooter()/]
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateHtmlHead(aDepartement: PPUY1)]
+	<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>[aDepartement.nom/]</title>
+<style>
+ul{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  border-right:1px solid #bbb;
+}
+
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+</style>
+<link href="./css/headers.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="./css/blog.css" rel="stylesheet">
+</head>
+[/template]
+[template public generateTopHeader(aDepartement : PPUY1)]
+	<header class="p-3 text-white" style="background-color:rgb(1, 1, 39) !important;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Faculté des Sciences</a></li>
+        </ul>
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2">Login</button>
+        </div>
+      </div>
+    </div>
+  </header>
+[/template]
+
+[template public generateNavbar(aDepartement: PPUY1)]
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+ 		<li class="nav-item"><a href="index.html" style="color:white;">ACCUEIL</a></li>
+		[for (departement : Formation | departement.formation)]
+        <li class="nav-item" style="background-color:rgb(1, 1, 39) !important;"><a href="./Formation/[departement.nom/].html" style="color:white;">[departement.nom /]</a></li>
+        [/for] 
+      </ul>
+    </header>
+  </div>
+[/template]
+[template public generateNavbarFormationPage(aDepartement: PPUY1)]
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+ 		<li class="nav-item"><a href="../index.html" style="color:white;">ACCUEIL</a></li>
+		[for (departement : Formation | departement.formation)]
+        <li class="nav-item" style="background-color:rgb(1, 1, 39) !important;"><a href="./[departement.nom/].html" style="color:white;">[departement.nom /]</a></li>
+        [/for] 
+      </ul>
+    </header>
+  </div>
+[/template]
+
+[template public generateFormation(aDepartement : PPUY1)]
+[comment @main/]
+[for (departement : Departement | aDepartement.departement)]
+[for ( formation: Formation | departement.formation)]
+[file ('./'+'Formation' +'/'+formation.nom+'.html', false, 'UTF-8')]
+[aDepartement.generateHtmlHead()/]
+<body>
+[aDepartement.generateTopHeader()/]
+<div class="container">
+   <img class="img-responsive" src="../image/home.png" alt="Chania" width="100%" height="100%"> 
+</div>
+[aDepartement.generateNavbarFormationPage()/] 
+<main class="container">
+  <div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+         [formation.nom/]
+      </h3>
+      <article class="blog-post">
+		[for (description : Description | formation.description)]
+	  	<h3>[description.titre/]</h3>
+        <pre>[description.text/]</pre>
+	    [/for]
+      </article>
+    </div> 
+[for (niveau : Niveau | formation.niveau)]
+ <div class="col-md-4">
+        <div class="position-sticky">
+          <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+            <div class="list-group list-group-flush border-bottom scrollarea">
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                  <strong class="mb-1" style="background-color:rgb(1, 1, 39) !important;color:white;">NIVEAU LICENCE [niveau.id_niveau/]</strong>
+                </div>
+             </a>
+			[for (semestre : Semestre | niveau.semestre)]
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                  <strong class="mb-1">UE SEMESTRE [semestre.id_semestre/]</strong>
+				 <div class="list-group">
+			[for (ue : UE | semestre.ue)]	
+         	<a href="#" class="list-group-item list-group-item-action">[ue.nom_ue/]</a>
+        	[/for]	
+				</div>
+			
+              </a>
+			[/for]
+            </div>
+          </div>
+        </div>
+      </div>
+
+[/for]
+</div>
+</main>
+[aDepartement.generateFooter()/]
+</body>
+</html>
+[/file]
+[/for]
+[/for]
+[/template]
+[template public generateFooter(aDepartement: PPUY1)]
+	<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+[/template]

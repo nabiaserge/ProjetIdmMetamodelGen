@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ppuy1" nsURI="http://www.ppuy1.com" nsPrefix="ppuy1">
+  <eClassifiers xsi:type="ecore:EClass" name="Calendrier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="evenement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="debut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Departement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formation" lowerBound="1"
+        upperBound="-1" eType="#//Formation" containment="true" eKeys="#//Formation/nom"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aPourResponsable" eType="#//Personne"
+        eKeys="#//Personne/nom #//Personne/prenom"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Description">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="titre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ressource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fichier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Niveau">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id_niveau" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="semestre" upperBound="-1"
+        eType="#//Semestre" containment="true" eKeys="#//Semestre/id_semestre"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenu" upperBound="-1"
+        eType="#//Calendrier" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Semestre">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id_semestre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ue" lowerBound="1" upperBound="-1"
+        eType="#//UE" containment="true" eKeys="#//UE/codeUE #//UE/nom_ue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenu" upperBound="-1"
+        eType="#//Description" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Personne">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prenom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PPUY1">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="personne" upperBound="-1"
+        eType="#//Personne" containment="true" eKeys="#//Personne/nom #//Personne/prenom"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="departement" upperBound="-1"
+        eType="#//Departement" containment="true" eKeys="#//Departement/nom #//Departement/description"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aPourResponsable" eType="#//Personne"
+        eKeys="#//Personne/nom #//Personne/prenom"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Formation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="niveau" upperBound="-1"
+        eType="#//Niveau" containment="true" eKeys="#//Niveau/id_niveau"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" upperBound="-1"
+        eType="#//Description" containment="true" eKeys="#//Description/text #//Description/titre"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendrier" upperBound="-1"
+        eType="#//Calendrier" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aPourResponsable" eType="#//Personne"
+        eKeys="#//Personne/nom #//Personne/prenom"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UE">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom_ue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionnelle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EstDispenser" upperBound="-1"
+        eType="#//Personne" eKeys="#//Personne/nom #//Personne/prenom"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenu" upperBound="-1"
+        eType="#//Ressource" containment="true" eKeys="#//Ressource/fichier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codeUE" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendrier" upperBound="-1"
+        eType="#//Calendrier" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" upperBound="-1"
+        eType="#//Description" containment="true" eKeys="#//Description/text #//Description/titre"/>
+  </eClassifiers>
+</ecore:EPackage>

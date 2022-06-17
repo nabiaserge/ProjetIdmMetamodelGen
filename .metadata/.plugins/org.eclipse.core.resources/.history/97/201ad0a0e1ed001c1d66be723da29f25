@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppuy1:PPUY1
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ppuy1="http://www.ppuy1.com"
+    xsi:schemaLocation="http://www.ppuy1.com PPUY1.ecore"
+    nom="Portail Pedagogique">
+  <personne
+      nom="Pr Atsa"
+      prenom="Etoundi"/>
+  <personne
+      nom="Dr Tsopze"
+      prenom="Tsopze"/>
+  <personne
+      nom="Dr Tapamo"
+      prenom="Hyppolite"/>
+  <personne
+      nom="Dr Kimbi"
+      prenom="Xaviera"/>
+  <personne
+      nom="Dr Monthe"
+      prenom="Valery"/>
+  <personne
+      nom="Dr Fidel"
+      prenom="Djiomekon"/>
+  <personne
+      nom="Dr Aminou"
+      prenom="Kalidou"/>
+  <personne
+      nom="Dr Abessolo"
+      prenom="Ghislain"/>
+  <departement
+      nom="Informatique"
+      description="Le Département Informatique est l'une des composantes de l'Université de Yaoundé 1.&#xA;Le Département Informatique en chiffres :&#xA;plus de 1500 étudiants inscrits en licence informatique ;&#xA;plus de 500 étudiants inscrits en master informatique ;&#xA;9 formations, dont 4 parcours de master informatique ;&#xA;4 laboratoires de recherche ;&#xA;50 enseignants-chercheurs."
+      aPourResponsable="//@personne[nom='Dr%20Aminou',prenom='Kalidou']">
+    <formation
+        nom="Genie logiciel"
+        aPourResponsable="//@personne[nom='Pr%20Atsa',prenom='Etoundi']">
+      <niveau
+          id_niveau="3">
+        <semestre
+            id_semestre="1">
+          <ue
+              nom_ue="Introduction à l’algorithmique"
+              EstDispenser="//@personne[nom='Pr%20Atsa',prenom='Etoundi']"
+              codeUE="INF1011"/>
+          <ue
+              nom_ue="Introduction à l’Architecture des ordinateurs"
+              EstDispenser="//@personne[nom='Dr%20Tapamo',prenom='Hyppolite']"
+              codeUE="INF1021"/>
+          <ue
+              nom_ue="Programmation structurée en C"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1031"/>
+        </semestre>
+        <semestre
+            id_semestre="2">
+          <ue
+              nom_ue="Introduction aux Structures de données"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1042"/>
+          <ue
+              nom_ue="Introduction aux réseaux"
+              codeUE="INF1O52"/>
+        </semestre>
+      </niveau>
+      <description
+          text=" OBJECTIFS DE LA FORMATION&#xA;Cette licence vise le double objectif de poursuite d’études et de formation professionnelle.&#xA;L’informatique est une discipline jeune aux multiples facettes, dont les métiers sont en constante&#xA;évolution et en interaction avec les sciences connexes à l'informatique. Le parcours Informatique&#xA;propose à la fois des unités d'enseignement fondamentales (mathématiques, algorithmique,&#xA;langages de programmation issus des principaux paradigmes, outils formels, automates,&#xA;cryptographie), ainsi que des unités d'enseignement ouvrant à une professionnalisation plus&#xA;immédiate (systèmes informatiques, web, bases de données, programmation et conception&#xA;orientées objet, réseaux, projets de développement). La relative pluridisciplinarité des premières&#xA;années est une étape indispensable. Elle garantit une formation scientifique large, une ouverture&#xA;d’esprit et une qualité du socle sur lequel l’étudiant fonde ses connaissances informatiques, selon&#xA;deux approches : une fondamentale et l’autre plus technique."
+          titre="I. LICENCE D'INFORMATIQUE"/>
+    </formation>
+    <formation
+        nom="Data sciences"
+        aPourResponsable="//@personne[nom='Dr%20Tsopze',prenom='Tsopze']"/>
+    <formation
+        nom="Reseau"
+        aPourResponsable="//@personne[nom='Dr%20Aminou',prenom='Kalidou']"/>
+    <formation
+        nom="Licences fondamentale généralité">
+      <niveau
+          id_niveau="1">
+        <semestre
+            id_semestre="1">
+          <ue
+              nom_ue="Introduction à l’algorithmique"
+              EstDispenser="//@personne[nom='Pr%20Atsa',prenom='Etoundi']"
+              codeUE="INF1011"/>
+          <ue
+              nom_ue="Introduction à l’Architecture des ordinateurs"
+              EstDispenser="//@personne[nom='Dr%20Tapamo',prenom='Hyppolite']"
+              codeUE="INF1021"/>
+          <ue
+              nom_ue="Programmation structurée en C"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1031"/>
+        </semestre>
+        <semestre
+            id_semestre="2">
+          <ue
+              nom_ue="Introduction aux Structures de données"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1042"/>
+          <ue
+              nom_ue="Introduction aux réseaux"
+              codeUE="INF1O52"/>
+        </semestre>
+      </niveau>
+    </formation>
+    <formation
+        nom="Professionelle ICT"/>
+  </departement>
+</ppuy1:PPUY1>

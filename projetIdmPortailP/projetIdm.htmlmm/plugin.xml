@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated html_model -->
+      <package
+            uri="www.html_model.cm"
+            class="html_model.Html_modelPackage"/>
+   </extension>
+
+</plugin>

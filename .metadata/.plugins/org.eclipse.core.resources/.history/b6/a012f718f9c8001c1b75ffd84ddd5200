@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cercle" nsURI="cercle" nsPrefix="www.Cercle.com">
+  <eClassifiers xsi:type="ecore:EClass" name="Cercle">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rayon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="couleur" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Relation" eKeys="#//Relation/cible #//Relation/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cible" lowerBound="1" eType="#//Relation"
+        eKeys="#//Relation/cible #//Relation/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Achitecture">
+    <eOperations name="decrire"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cercle" lowerBound="1"
+        upperBound="-1" eType="#//Cercle" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relation" lowerBound="1"
+        upperBound="-1" eType="#//Relation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cible" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+</ecore:EPackage>

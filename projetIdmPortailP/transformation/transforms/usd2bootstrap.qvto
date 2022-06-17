@@ -1,0 +1,820 @@
+
+/**
+* This module ensures usd transformation to Bootstrap
+*/
+modeltype usdMM "strict" uses html_model('www.html_model.cm');
+modeltype bstrapMM "strict" uses bootstrap('http://www.example.org/bootstrap');
+
+transformation usd2bstrap(in usd : usdMM, out bstrap : bstrapMM);
+
+main() {
+	usd.rootObjects()[Page] -> map pageUsd2PageBstrap();
+}
+
+/**
+* Map a usd page element to bstrap Page element.
+*/
+mapping usdMM::Page::pageUsd2PageBstrap() : bstrapMM::Page {
+	name := self.title;
+	pagecontents += self.contents -> map constructPageContent();
+}
+
+// =========== Start transformation PageContent to Pagecontent ===========//
+
+/**
+* Map an usd PageContent element to Bstrap PageContent element.
+*/
+abstract mapping usdMM::PageContent::pageContentUsd2PageContentBstrap() : bstrapMM::PageContent {}
+
+// =========== Start transformation TextContainer to TextContainer ===========//
+
+abstract mapping usdMM::TextContainer::textContainerUsd2TextContainerBstrap() : bstrapMM::TextContainer 
+	inherits usdMM::PageContent::pageContentUsd2PageContentBstrap{
+		textelements += self.textElements -> map constructTextElement();
+		var textWithProps := self.textElements[usdMM::Text] -> selectOne(t|t.text.isPropertyLine() or t.text.containsProperties());
+		if (textWithProps <> null){
+			var props := textWithProps.text.substringAfter("properties");
+			if (props.find('margin:') > 0){
+				generalProperties += props.marginWrapper();
+			};
+			if (props.find('padding:') > 0){
+				generalProperties += props.paddingWrapper();
+			};
+			if (props.find('border:') > 0){
+				var prop := props.substringAfter('border:').substringBefore('}').substringAfter('{');
+				if(prop <> null){
+					prop := prop.trim();
+					if (prop.find("border") > 0){
+						generalProperties += prop.getBorder();
+					};
+					if (prop.find("borderColor") > 0){
+						generalProperties += prop.getColoredBorder();
+					};
+				}
+			};
+			if(props.toLower().find("alertproperty") > 0){
+				var prop := props.toLower().substringAfter('alertproperty');
+				if(prop <> null){
+					if (prop.find("animated")>0) generalProperties += object AlertAnimated{};
+					if (prop.find("alertstyle")>0) 
+								generalProperties += object AlertStyle{
+									color := prop.substringAfter("alertstyle").findProperty().getColor()};
+				}
+			}
+		};		
+}
+
+// =========== Start transformation Title to Title ===========//
+
+/**
+* A mapper which map an usd Title element to bstrap Title element.
+*/
+mapping usdMM::Title::titleUsd2TitleBstrap() : bstrapMM::Title 
+	inherits usdMM::TextContainer::textContainerUsd2TextContainerBstrap{
+		level := self.level;
+		
+}
+
+// =========== Start transformation Paragraph to Paragraph ===========//
+
+/**
+* A mapper which map an usd Paragraph element to bstrap Paragraph element.
+*/
+mapping usdMM::Paragraph::paragraphUsd2ParagraphBstrap() : bstrapMM::Paragraphe 
+	inherits usdMM::TextContainer::textContainerUsd2TextContainerBstrap
+	when {self.isThereElementToBeDisplayed()}{}
+
+// =========== Start transformation Navigation to Navigation ===========//
+	
+/**
+* A mapper which map an usd Navigation element to bstrap Navigation element.
+*/
+mapping usdMM::Navigation::navigationUsd2NavigationBstrap() : bstrapMM::Navigation {
+	links := object bstrapMM::Link{
+		linkproperties := object LinkBrand{};
+	};
+	// Mapping nav elements
+	listelement += self.groupedItems -> map constructListElement();
+	navbar += self.type.parseNavProperties();
+	
+	if (self.textContent.containsProperties()){
+		var props := self.textContent.substringAfter("properties");
+		if (props <> null){
+			if (props.find('margin:') > 0){
+				generalProperties += props.marginWrapper();
+			};
+			if (props.find('padding:') > 0){
+				generalProperties += props.paddingWrapper();
+			};
+			if (props.find('border:') > 0){
+				var prop := props.substringAfter('border:').substringBefore('}').substringAfter('{');
+				if(prop <> null){
+					prop := prop.trim();
+					if (prop.find("border") > 0){
+						generalProperties += prop.getBorder();
+					};
+					if (prop.find("borderColor") > 0){
+						generalProperties += prop.getColoredBorder();
+					};
+				}
+			};
+			if(props.toLower().find("alertproperty") > 0){
+				var prop := props.toLower().substringAfter('alertproperty');
+				if(prop <> null){
+					if (prop.find("animated")>0) generalProperties += object AlertAnimated{};
+					if (prop.find("alertstyle")>0) 
+								generalProperties += object AlertStyle{
+									color := prop.substringAfter("alertstyle").findProperty().getColor()};
+				}
+			}
+		}
+	}
+	
+}
+
+// =========== Start transformation ListElement to ListElement ===========//
+
+/**
+* Abstract mapper which map an usd ListElement to Bstrap ListElement.
+* and also parse all bootstrap properties. 
+*/
+abstract mapping usdMM::ListElement::listElementUsd2ListElementBstrap() : bstrapMM::ListElement {
+	listitems += self.items -> map listItemUsd2ListItemBstrap();
+	var textWithProps := self.items.elements[usdMM::Paragraph].subobjects()[usdMM::Text] -> selectOne(t | t.text.isPropertyLine());
+	if (textWithProps <> null){
+		var props := textWithProps.text.substringAfter("properties");
+		if (props <> null){
+			props := props.trim();
+			if (props.find('margin:') > 0){
+				generalProperties += props.marginWrapper();
+			};
+			if (props.find('padding:') > 0){
+				generalProperties += props.paddingWrapper();
+			};
+			if (props.find('border:') > 0){
+				var prop := props.substringAfter('border:').substringBefore('}').substringAfter('{');
+				if(prop <> null){
+					prop := prop.trim();
+					if (prop.find("border") > 0){
+						generalProperties += prop.getBorder();
+					};
+					if (prop.find("borderColor") > 0){
+						generalProperties += prop.getColoredBorder();
+					};
+				}
+			};
+			if (props.find("listProperty:") > 0){
+				var prop := props.substringAfter("listProperty:").findProperty();
+				listproperty += prop.getBasicList();
+			};
+			if(props.toLower().find("alertproperty") > 0){
+				var prop := props.toLower().substringAfter('alertproperty');
+				if(prop <> null){
+					if (prop.find("animated")>0) generalProperties += object AlertAnimated{};
+					if (prop.find("alertstyle")>0) 
+								generalProperties += object AlertStyle{
+									color := prop.substringAfter("alertstyle").findProperty().getColor()};
+				}
+			}
+		}
+	}
+
+}
+
+mapping usdMM::OrderedList::orderedListUsd2OrderedListBstrap() : bstrapMM::OrderList 
+	inherits usdMM::ListElement::listElementUsd2ListElementBstrap{
+	
+}
+
+mapping usdMM::UnorderedList::unOrderedListUsd2UnorderedBstrap() : bstrapMM::UnOrderedList 
+	inherits usdMM::ListElement::listElementUsd2ListElementBstrap{
+}
+
+mapping  usdMM::ListItem::listItemUsd2ListItemBstrap() : bstrapMM::ListItem 
+	when {not self.isListProperties()}{
+	listitemelements += self.elements -> map constructListItemElement();
+	var textWithItemProp := self.elements[usdMM::Paragraph].textElements[usdMM::Text] -> selectOne(t | t.text.startsWith("(itemProperty"));
+	if (textWithItemProp <> null and textWithItemProp.text.find("active") > 0){
+		active := true;
+	}
+}
+
+mapping usdMM::ListElement::constructListElement() : bstrapMM::ListElement 
+	disjuncts usdMM::OrderedList::orderedListUsd2OrderedListBstrap,
+				usdMM::UnorderedList::unOrderedListUsd2UnorderedBstrap{}
+
+/**
+* A mapper which map an usd ListItemElement to bstrap ListElement.
+*/
+mapping usdMM::ListItemElement::constructListItemElement() : bstrapMM::ListItemElement 
+	disjuncts usdMM::Paragraph::paragraphUsd2ParagraphBstrap, usdMM::OrderedList::orderedListUsd2OrderedListBstrap,
+				usdMM::UnorderedList::unOrderedListUsd2UnorderedBstrap, usdMM::Link::linkUsd2LinkBstrap {
+	
+}
+
+/**
+* A mapper which map an usd TableRow element to bstrap TableRow element.
+* and also parse all bootstrap properties.
+*/
+mapping usdMM::TableRow::tableRowUsd2TableRowBstrap() : bstrapMM::TableRow {
+	tablecells += self.cells -> map tableCellUsd2TableCellBstrap();
+	var textWithProps := self.cells.
+		textElements[usdMM::Text] -> selectOne(t | t.text.find("rowProps") > 0);
+	if (textWithProps <> null) {
+		var props := textWithProps.text.substringAfter("rowProps:");
+		if (props <> null){
+			props := props.trim();
+			if (props.find('margin:') > 0){
+				generals += props.marginWrapper();
+			};
+			if (props.find('padding:') > 0){
+				generals += props.paddingWrapper();
+			};
+			if (props.find('border:') > 0){
+				var prop := props.substringAfter('border:').substringBefore('}').substringAfter('{');
+				if(prop <> null){
+					prop := prop.trim();
+					if (prop.find("border") > 0){
+						generals += prop.getBorder();
+					};
+					if (prop.find("borderColor") > 0){
+						generals += prop.getColoredBorder();
+					};
+				}
+			}
+		}
+	}
+}
+
+/**
+* A mapper which map an usd TableCell element to bstrap TableCell element.
+* and also parse all bootstrap properties.
+*/
+mapping usdMM::TableCell::tableCellUsd2TableCellBstrap() : bstrapMM::TableCell 
+	inherits usdMM::TextContainer::textContainerUsd2TextContainerBstrap{
+	var textWithProps := self.textElements[usdMM::Text] -> 
+							selectOne(t | t.text.find("cellProps") > 0);
+	if (textWithProps <> null) {
+		var props := textWithProps.text.substringAfter("cellProps:");
+		if (props <> null){
+			props := props.trim();
+			if (props.find('margin:') > 0){
+				generalProperties += props.marginWrapper();
+			};
+			if (props.find('padding:') > 0){
+				generalProperties += props.paddingWrapper();
+			};
+			if (props.find('border:') > 0){
+				var prop := props.substringAfter('border:').substringBefore('}').substringAfter('{');
+				if(prop <> null){
+					prop := prop.trim();
+					if (prop.find("border") > 0){
+						generalProperties += prop.getBorder();
+					};
+					if (prop.find("borderColor") > 0){
+						generalProperties += prop.getColoredBorder();
+					};
+				}
+			}
+		}
+	}
+}
+// =========== Start transformation Section to Conatiner ===========//
+
+/**
+* A mapper which map an usd Section element to bstrap Container element.
+* and also parse all bootstrap properties.
+*/
+abstract mapping usdMM::Section::sectionUsd2ContainerBstrap() : bstrapMM::Container {
+	pagecontents += self -> map constructPageContent();
+	var textWithProps := self.section[usdMM::Paragraph].textElements[usdMM::Text] -> 
+							selectOne(t | t.text.containsProperties());
+	if (textWithProps <> null) {
+		var props := textWithProps.text.substringAfter("properties");
+		if (props <> null){
+			props := props.trim();
+			
+	}
+	}
+	}
+
+
+// =========== Start transformation Section to FixContainer ===========//
+
+/**
+* A mapper which map an usd Section element to bstrap FixContainer element.
+* and also parse all bootstrap properties.
+*/
+mapping usdMM::Section::sectionUsd2FixContainerBstrap() : bstrapMM::FixContainer 
+	inherits usdMM::Section::sectionUsd2ContainerBstrap
+	when { self.isFixContainer()}{
+	
+}
+
+// =========== Start transformation Section to FluidContainer ===========//
+
+/**
+* A mapper which map an usd Section element to bstrap FluidContainer element.
+* and also parse all bootstrap properties.
+*/
+mapping usdMM::Section::sectionUsd2FluidContainerBstrap() : bstrapMM::FluidContainer 
+	inherits usdMM::Section::sectionUsd2ContainerBstrap
+	when { self.isFluidContainer()}{
+}
+
+// =========== This mapper make disjunction beetwen all PageContent elements mappers ===========//
+
+/**
+* Map a usd PageContent element to bstrap PageContent element, 
+* which make disjunction beetwen these maps paragraphUsd2ParagraphBstrap,
+* titleUsd2TitleBstrap
+*/
+mapping usdMM::PageContent::constructPageContent() : bstrapMM::PageContent 
+	disjuncts usdMM::Paragraph::paragraphUsd2ParagraphBstrap, usdMM::Title::titleUsd2TitleBstrap,
+				usdMM::OrderedList::orderedListUsd2OrderedListBstrap, usdMM::UnorderedList::unOrderedListUsd2UnorderedBstrap,
+				usdMM::Navigation::navigationUsd2NavigationBstrap,
+				usdMM::Section::sectionUsd2FixContainerBstrap, 
+				usdMM::Section::sectionUsd2FluidContainerBstrap{}
+	
+
+// =========== Start transformation Text to Text ===========//
+
+mapping usdMM::Text::textUsd2TextBstrap() : bstrapMM::Text
+	when {not self.text.isPropertyLine()}{	
+	var textContent := self.text;
+	if (self.container().metaClassName().=("Link")){
+		textContent := textContent.substringBefore("]").substringAfter("[");
+	};
+	text := textContent.trim();
+}
+
+mapping usdMM::Text::textUsdContainPropToDisplay2TextBstrap() : bstrapMM::Text 
+	{
+	var t := self.text;
+	if (t.isPropertyLine() or self.inTabCellWhithProps()){
+		t := t.getText().trim();
+	};
+	if (self.container().metaClassName().=("Link")){
+		t := t.substringAfter("]");
+	};
+	if (t <> null){
+		result.text := t;
+	}else{
+		result.text := self.text.getText();
+	}
+}
+
+// =========== Start transformation UrlBasedLink to UrlBasedLink ===========//
+/**
+* An anstract mapper which map an usd UrlBasedLink element to bstrap UrlBasedLink element.
+*/
+abstract mapping usdMM::UrlBasedLink::urlBasedLinkUsd2UrlBasedLinkBstrap() : bstrapMM::UrlBasedLink 
+	inherits usdMM::CompositeTextElement::compositeTextElementUsd2ContainableTextElement
+	{
+	url := self.url;
+	title := self.title;
+}
+
+// =========== Start transformation Link to Link or Span for Badge bootstrap element ===========//
+
+/**
+* A mapper which map an usd Link element to bstrap Link element.
+* It also extends urlBasedLinkUsd2UrlBasedLinkBstrap and compositeTextElementUsd2TextNestedBstrap
+*/
+mapping usdMM::Link::linkUsd2LinkBstrap() : bstrapMM::Link 
+	inherits usdMM::UrlBasedLink::urlBasedLinkUsd2UrlBasedLinkBstrap 
+			when {not self.isLinkButton() and not self.isLink2Badge()}{
+	var textElem := self.subTextElements[usdMM::Text] -> selectOne(t | t.text.toLower().find("badge") > 0);
+	if (textElem <> null) {
+		if (textElem.text.find("badge-") > 0){
+			badgeproperties += object BadgeStyle {
+				color := textElem.text.substringAfter("badge-").getColor();
+			}
+		};
+		if(textElem.text.toLower().find("badgepill") > 0){
+			badgeproperties += object BadgePill{}
+		}
+	};
+	textElem := self.subTextElements[usdMM::Text] -> selectOne(t | t.text.toLower().find("linkproperty") > 0);
+	if(textElem <> null){
+		var props := textElem.text.toLower().substringAfter("linkproperty").findProperty();
+		if(props.find("alertlink") > 0) {
+			linkproperties += object AlertLink{}
+		}
+	}
+}
+
+/**
+* A mapper which map an usd Link element to bstrap Button element.
+* It also extends urlBasedLinkUsd2UrlBasedLinkBstrap and compositeTextElementUsd2TextNestedBstrap
+*/
+mapping usdMM::Link::linkUsd2LinkButtonBstrap() : bstrapMM::Link 
+	inherits usdMM::UrlBasedLink::urlBasedLinkUsd2UrlBasedLinkBstrap
+			when {self.isLinkButton() and not self.isLink2Badge()}{
+				buttonproperties += object bstrapMM::ButtonLink {};
+			}
+
+// =========== Start transformation CompositeTextElement to CompositeTextElement ===========//
+
+/**
+* An abstract mapper which map an usd Composite element to bstrap ContainableTextElement element.
+* And also parse a specified propertie to bootstrap properties
+*/
+abstract mapping usdMM::CompositeTextElement::compositeTextElementUsd2ContainableTextElement() : bstrapMM::ContainableTextElement {
+	var textWithProps := self.subTextElements[usdMM::Text] -> selectOne(t|t.text.containsProperties());
+	if (textWithProps <> null){
+		var props := textWithProps.text.substringBefore(")")+")";
+		if (props.find('margin:') > 0){
+			generalProperties += props.marginWrapper();
+		};
+		if (props.find('padding:') > 0){
+			generalProperties += props.paddingWrapper();
+		};
+		if (props.find('border:') > 0){
+			var prop := props.substringAfter('border:').substringBefore('}').substringAfter('{');
+			if(prop <> null){
+				prop := prop.trim();
+				if (prop.find("border") > 0){
+					generalProperties += prop.getBorder();
+				};
+				if (prop.find("borderColor") > 0){
+					generalProperties += prop.getColoredBorder();
+				};
+			}
+		};
+		if(props.toLower().find("alertproperty") > 0){
+			var prop := props.toLower().substringAfter('alertproperty');
+			if(prop <> null){
+				if (prop.find("animated")>0) generalProperties += object AlertAnimated{};
+				if (prop.find("alertstyle")>0) 
+							generalProperties += object AlertStyle{
+								color := prop.substringAfter("alertstyle").findProperty().getColor()};
+			}
+		}
+	};
+}
+
+// =========== Start transformation Button to Button ===========//
+	
+/**
+* A mapper which map an usd Button element to bstrap Button element.
+* With specified properties. 
+*/
+mapping usdMM::Button::buttonUsd2ButtonBstrap() : bstrapMM::Button{
+	
+	result.buttonproperties += self.type.parseButtonProperties();
+	var subText := self.subTextElements[usdMM::Text] -> selectOne(t|true);
+	if (subText.text.containsProperties()){
+		var props := subText.text.substringBefore(")")+")";
+
+	}
+}
+
+
+// =========== This mapper make disjunction beetwen all TextElement mappers ===========//
+
+/**
+* A mapper wich map an usd TextElement element to bstrap TextElement element.
+*/
+mapping usdMM::TextElement::constructTextElement() : bstrapMM::TextElements
+	disjuncts usdMM::Text::textUsdContainPropToDisplay2TextBstrap, usdMM::Text::textUsd2TextBstrap, 
+		usdMM::Link::linkUsd2LinkBstrap, usdMM::Link::linkUsd2LinkButtonBstrap,
+		usdMM::Button::buttonUsd2ButtonBstrap{}
+
+// =========== Start transformation for title properties ===========//
+
+/**
+* A mapper wich map a String contains properties to bstrap DisplayProperty element.
+* which make dijuction beetwen getDisplay1, getDisplay2, getDisplay3, and getDisplay4
+*/	
+mapping String::disjunctsDisplayProperties() : bstrapMM::DisplayProperty 
+	disjuncts String::getDisplay1, String::getDisplay2,
+				String::getDisplay3,String::getDisplay4{}
+
+abstract mapping String::parsePropertyClasses() : bstrapMM::PropertyClass {}
+
+abstract mapping String::getDisplayProperty() : DisplayProperty 
+	inherits String::parsePropertyClasses{}
+
+/**
+* A mapper to map String to bostrap Display1 element.
+*/
+mapping String::getDisplay1() : bstrapMM::Display1 
+	inherits String::getDisplayProperty
+	when {self.find('display:1') > 0}{
+	}
+
+/**
+* A mapper to map String to bostrap Display2 element.
+*/
+mapping String::getDisplay2() : bstrapMM::Display2 
+	inherits String::getDisplayProperty
+	when {self.find('display:2') > 0}{}
+
+/**
+* A mapper to map String to bostrap Display3 element.
+*/
+mapping String::getDisplay3() : bstrapMM::Display3
+	inherits String::getDisplayProperty
+	when {self.find('display:3') > 0}{}
+
+/**
+* A mapper to map String to bostrap Display4 element.
+*/
+mapping String::getDisplay4() : bstrapMM::Display4 
+	inherits String::getDisplayProperty
+	when {self.find('display:4') > 0}{}
+	
+/**
+* A mapper which map a string properties to specified button properties
+* TODO Don't forgot resolving warning
+*/
+mapping String::parseButtonProperties() : Set(ButtonProperty) {
+	init {
+		result := Set{};
+		
+		if (self.find('btn-') > 0){
+			result += object ButtonStyle {
+				color := color := self.substringAfter("btn-").getColor();
+			};
+		}
+		else if (self.find("btn-link") > 0){
+			result += object ButtonLink {
+			};
+		};
+		
+		if (self.find("active") > 0){
+			result += object Active{};
+		};
+		if (self.find("disabled") > 0){
+			result += object Disabled{};
+		};
+		if (self.find("btn-sm") > 0){
+			result += object ButtonSize{
+				size := Size::SMALL;
+			};
+		};
+		if (self.find("btn-lg") > 0){
+			result += object ButtonSize{
+				size := Size::LARGE;
+			};
+		};
+		}
+	}
+
+/**
+* A mapper which map a string properties to specified bootstrap Nav properties
+* TODO Don't forgot resolving warning
+*/
+mapping String::parseNavProperties() : Set(NavBarProperty) {
+	init {
+		result := Set{};
+		if (self.find('vertical') > 0){
+			result += object Vertical{}
+		}
+		else if (self.find('basic') > 0){
+			result += object Basic{}
+		}
+		else if (self.find('centred') > 0){
+			result += object Centered{}
+		}
+		else if (self.find('brand') > 0 or self.find('navbar-brand') > 0){
+			result += object Brand{}
+		}
+	}
+}
+
+
+// Parsing general properties
+/**
+* helper to get from String contains margin properties to bstrap Margin element, 
+*/
+helper String::marginWrapper() : bstrapMM::Margin {
+	var prop := self.substringAfter('margin:').substringBefore('}').substringAfter('{');
+	if(prop <> null){
+		return prop.getMargin();
+	};
+	return null;
+}
+/**
+* helper to get from String contains padding properties to bstrap Padding element, 
+*/
+helper String::paddingWrapper() : bstrapMM::Padding {
+	var prop := self.substringAfter('padding:').substringBefore('}').substringAfter('{');
+	if(prop <> null){
+		return prop.getPadding();	
+	};
+	return null;
+}
+
+/**
+* helper to check if string contains some properties
+*/
+helper String::containsProperties() : Boolean {
+	return self.startsWith('properties') and self.find(":") > 0;
+}
+
+/**
+* helper to get from String contains color properties to bstrap Color element, 
+*/
+helper String::findColor() : bstrapMM::Color {
+	var prop := self.substringAfter('color:').findProperty();
+	return 	prop.getColor();
+}
+
+/**
+* helper to get from String contains color properties to bstrap Color element, 
+*/
+helper String::getColor() : bstrapMM::Color{
+	var prop := self.toLower().trim();
+	var color := Color::DARK;
+	switch {
+		case (prop.find('primary') > 0) color := Color::PRIMARY;
+		case (prop.find('secondary') > 0) color := Color::SECONDARY;
+		case (prop.find('danger') > 0) color := Color::DANGER;
+		case (prop.find('success') > 0) color := Color::SUCCESS;
+		case (prop.find('info') > 0) color := Color::INFO;
+		case (prop.find('white') > 0) color := Color::WHITE;
+		case (prop.find('warning') > 0) color := Color::WARNING;
+		case (prop.find('light') > 0) color := Color::LIGHT;
+	};
+	return color;
+}
+
+/**
+* helper to get from String contains alignment properties to bstrap Alignment element, 
+*/
+helper String::getAlignment() : bstrapMM::Alignement {
+	var prop := self.toLower().trim();
+	var alignment := Alignement::CENTER;
+	switch {
+		case (prop.find('left')>0) alignment := Alignement::LEFT;
+		case (prop.find('right')>0) alignment := Alignement::RIGHT;
+		case (prop.find('top')>0) alignment := Alignement::TOP;
+		case (prop.find('bottom')>0) alignment := Alignement::BOTTOM;
+	};
+	return alignment;
+}
+
+/**
+* helper to get from String contains margin properties to bstrap Margin element, 
+*/
+helper String::getMargin() : bstrapMM::Margin {
+	var marginProp := object bstrapMM::Margin{
+		level := self.getLevel();
+		if (self.find('alignment:') > 0 ){
+			var prop := self.substringAfter('alignment:').findProperty();
+			alignement := prop.getAlignment();	
+		}
+	};
+	return marginProp;
+}
+
+/**
+* helper to get from String contains padding properties to bstrap Padding element, 
+*/
+helper String::getPadding() : bstrapMM::Padding {
+	var paddingProp := object bstrapMM::Padding{
+		level := self.getLevel();
+		if (self.find('alignment:') > 0 ){
+			var prop := self.substringAfter('alignment:').findProperty();
+			alignement := prop.getAlignment();	
+		}
+	};
+	return paddingProp;
+}
+
+/**
+* helper to get from String contains border properties to bstrap Border element, 
+*/
+helper String::getBorder() : bstrapMM::Border {
+	return object bstrapMM::Border{}
+}
+
+/**
+* helper to get from String contains colored border properties to bstrap ColoredBorder element, 
+*/
+helper String::getColoredBorder() : bstrapMM::ColoredBorder {
+	var coloredBorderProp := object bstrapMM::ColoredBorder {
+		var prop := self.substringAfter('borderColor:').findProperty();
+		color := prop.getColor();
+	};
+	return coloredBorderProp;
+}
+
+/**
+* helper to check from given String if it contains properties, 
+*/
+helper String::isPropertyLine() : Boolean {
+	return self.startsWith("properties") and self.find(":") > 0;
+}
+
+/**
+* helper to check if given ListItem is a properties, 
+*/
+helper usdMM::ListItem::isListProperties() : Boolean {
+	return self.elements[usdMM::Paragraph].subobjects()[usdMM::Text] -> selectOne(t | t.text.isPropertyLine()) <> null;
+}
+
+/**
+* helper to construct a BasicList property from a given string which contains property, 
+*/
+helper String::getBasicList() : bstrapMM::ListProperty {
+	var prop := self.toLower();
+	switch {
+		case (prop.find("basiclist") > 0) return object bstrapMM::BasicList {};
+		case (prop.find("horizontallist") > 0) return object bstrapMM::HorizontalList {};
+	};
+	return null ;
+}
+
+/**
+* helper to get usd Text element which contains properties, 
+*/
+helper usdMM::Section::getPropertyTextElement() : usdMM::Text {
+	return  self.section[usdMM::Paragraph].textElements[usdMM::Text] -> 
+				selectOne(t | t.text.toLower().trim().startsWith("properties:"));
+}
+
+/**
+* helper to check if section contains fixcontainer property, 
+*/
+helper usdMM::Section::isFixContainer() : Boolean {
+	var text := self.getPropertyTextElement();
+	return text <> null and text.text.trim().toLower().find("fixcontainer") > 0;
+}
+
+/**
+* helper to check if section contains fluidcontainer property, 
+*/
+helper usdMM::Section::isFluidContainer() : Boolean {
+	var text := self.getPropertyTextElement();
+	return text <> null and text.text.toLower().trim().find("fluidcontainer") > 0;
+}
+
+/**
+* helper to check if in the given Paragraph usd element whe can find at least one element to be displayed in this paragraph, 
+*/
+helper usdMM::Paragraph::isThereElementToBeDisplayed() : Boolean {
+	var textElementsWithProps := self.textElements[usdMM::Text] -> selectOne(t | t.text.isPropertyLine());
+	return (textElementsWithProps -> size() <> self.textElements -> size())	
+}
+/**
+* helper to check if given Text element is in TabCell element
+*/
+helper usdMM::Text::inTabCellWhithProps() : Boolean {
+	return self.container().oclIsTypeOf(usdMM::TableCell) and self.text.toLower().find("tabproperties") > 0;
+}
+
+/**
+* An helper to check if given link is button. 
+*/
+helper usdMM::Link::isLinkButton() : Boolean {
+	var textElem := self.subTextElements[usdMM::Text] -> 
+			selectOne(t | (t.text.startsWith('[') or (t.text.startsWith('(') and t.text.find(":") > 0)) and t.text.find("btn") > 0);
+	return self.url.<>("#") and textElem <> null;	
+}
+
+/**
+* An helper to check if given link is badge. 
+*/
+helper usdMM::Link::isLink2Badge() : Boolean {
+		return self.subTextElements[usdMM::Text] -> selectOne(t | t.text.toLower().find("badge")>0) <> null and self.url = "";
+}
+
+/**
+* A query to find property value in to String 
+*/
+query String::findProperty() : String {
+	var prop := self;
+	var propBefore := prop.substringBefore(',');
+	if (propBefore <> null){
+		prop := propBefore;
+	};
+	return prop.toLower().trim();
+}
+
+/**
+* A query to find specific text in to String 
+*/
+query String::getText() : String {
+	var text := self;
+	while (text.find(")")>0) {
+		text := text.substringAfter(")");
+	};
+	return text;
+}
+
+/**
+* A query to find property level value in to String 
+*/
+query String::getLevel() : Integer {
+	
+	if (self.find('level') > 0 ){
+		var prop := self.substringAfter('level:').findProperty();
+		return prop.toInteger();
+	};
+	return 0;
+}
+
+

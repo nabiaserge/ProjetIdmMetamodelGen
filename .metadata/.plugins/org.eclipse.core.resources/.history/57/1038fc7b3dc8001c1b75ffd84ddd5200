@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<www.Cercle.com:Achitecture
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:www.Cercle.com="cercle"
+    xsi:schemaLocation="cercle Circle_Metamodel.ecore">
+  <cercle cle="1"
+      rayon="1.0"
+      couleur="rouge"/>
+  <cercle cle="2"
+      rayon="2.0"
+      couleur="bleu"
+      source="//@relation.0"
+      cible="//@relation.0"/>
+  <relation/>
+</www.Cercle.com:Achitecture>

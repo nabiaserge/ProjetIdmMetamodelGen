@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
+  <mapping sourceURI="http://www.example.org/simplemarkdown" targetURI="platform:/resource/projetIdmPortailP/idm.markdown-master/idm.simplemarkdown.mm/model/simplemarkdown.ecore"/>
+  <mapping sourceURI="http://www.example.org/bootstrap" targetURI="platform:/resource/projetIdmPortailP/projetIdm.bootstrapmm/model/bootstrap.ecore"/>
+  <mapping sourceURI="http://www.ppuy1.com" targetURI="platform:/resource/projetIdmPortailP/ppuy1Model/metamodels/PPUY1.ecore"/>
+  <mapping sourceURI="www.html_model.cm" targetURI="platform:/resource/projetIdmPortailP/htmlModel/metamodel/html_model.ecore"/>
+</uriMap:MappingContainer>

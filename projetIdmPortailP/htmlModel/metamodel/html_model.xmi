@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html_model:Page
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:html_model="www.html_model.cm"
+    xsi:schemaLocation="www.html_model.cm html_model.ecore"
+    title="Portail pedagogique Informatique">
+  <contents
+      xsi:type="html_model:Section"/>
+  <contents
+      xsi:type="html_model:Section"/>
+  <contents
+      xsi:type="html_model:Section"/>
+</html_model:Page>

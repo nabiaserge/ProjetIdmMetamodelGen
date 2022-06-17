@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExportRepresentationsAsImagesDialog">
+		<item key="ExportRepresentationsAsImagesDialog.imageFormat" value="JPG"/>
+		<list key="ExportRepresentationsAsImagesDialog.file">
+			<item value="/home/nabia6/eclipse-workspace/projetIdmPortailP/images"/>
+			<item value="/home/nabia6/eclipse-workspace/projet_idm/images"/>
+			<item value="/home/nabia6/Images"/>
+			<item value="/home/nabia6/Bureau"/>
+			<item value="/home/nabia6/eclipse-workspace/eclipse.emf.banque/model"/>
+		</list>
+	</section>
+</section>

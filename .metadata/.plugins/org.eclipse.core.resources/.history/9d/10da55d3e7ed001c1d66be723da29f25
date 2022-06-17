@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppuy1:PPUY1
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ppuy1="http://www.ppuy1.com"
+    xsi:schemaLocation="http://www.ppuy1.com PPUY1.ecore"
+    nom="Portail Pedagogique">
+  <personne
+      nom="Pr Atsa"
+      prenom="Etoundi"/>
+  <personne
+      nom="Dr Tsopze"
+      prenom="Tsopze"/>
+  <personne
+      nom="Dr Tapamo"
+      prenom="Hyppolite"/>
+  <personne
+      nom="Dr Kimbi"
+      prenom="Xaviera"/>
+  <personne
+      nom="Dr Monthe"
+      prenom="Valery"/>
+  <personne
+      nom="Dr Fidel"
+      prenom="Djiomekon"/>
+  <personne
+      nom="Dr Aminou"
+      prenom="Kalidou"/>
+  <personne
+      nom="Dr Abessolo"
+      prenom="Ghislain"/>
+  <departement
+      nom="Informatique"
+      description="Le Département Informatique est l'une des composantes de l'Université de Yaoundé 1.&#xA;Le Département Informatique en chiffres :&#xA;plus de 1500 étudiants inscrits en licence informatique ;&#xA;plus de 500 étudiants inscrits en master informatique ;&#xA;9 formations, dont 4 parcours de master informatique ;&#xA;4 laboratoires de recherche ;&#xA;50 enseignants-chercheurs."
+      aPourResponsable="//@personne[nom='Dr%20Aminou',prenom='Kalidou']">
+    <formation
+        nom="Genie logiciel"
+        aPourResponsable="//@personne[nom='Pr%20Atsa',prenom='Etoundi']">
+      <niveau
+          id_niveau="3">
+        <semestre
+            id_semestre="1">
+          <ue
+              nom_ue="Introduction à l’algorithmique"
+              EstDispenser="//@personne[nom='Pr%20Atsa',prenom='Etoundi']"
+              codeUE="INF1011"/>
+          <ue
+              nom_ue="Introduction à l’Architecture des ordinateurs"
+              EstDispenser="//@personne[nom='Dr%20Tapamo',prenom='Hyppolite']"
+              codeUE="INF1021"/>
+          <ue
+              nom_ue="Programmation structurée en C"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1031"/>
+        </semestre>
+        <semestre
+            id_semestre="2">
+          <ue
+              nom_ue="Introduction aux Structures de données"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1042"/>
+          <ue
+              nom_ue="Introduction aux réseaux"
+              codeUE="INF1O52"/>
+        </semestre>
+      </niveau>
+      <description
+          text=" OBJECTIFS DE LA FORMATION&#xA;Cette licence vise le double objectif de poursuite d’études et de formation professionnelle.&#xA;L’informatique est une discipline jeune aux multiples facettes, dont les métiers sont en constante&#xA;évolution et en interaction avec les sciences connexes à l'informatique. Le parcours Informatique&#xA;propose à la fois des unités d'enseignement fondamentales (mathématiques, algorithmique,&#xA;langages de programmation issus des principaux paradigmes, outils formels, automates,&#xA;cryptographie), ainsi que des unités d'enseignement ouvrant à une professionnalisation plus&#xA;immédiate (systèmes informatiques, web, bases de données, programmation et conception&#xA;orientées objet, réseaux, projets de développement). La relative pluridisciplinarité des premières&#xA;années est une étape indispensable. Elle garantit une formation scientifique large, une ouverture&#xA;d’esprit et une qualité du socle sur lequel l’étudiant fonde ses connaissances informatiques, selon&#xA;deux approches : une fondamentale et l’autre plus technique."
+          titre="I. LICENCE D'INFORMATIQUE"/>
+    </formation>
+    <formation
+        nom="Data sciences"
+        aPourResponsable="//@personne[nom='Dr%20Tsopze',prenom='Tsopze']"/>
+    <formation
+        nom="Reseau"
+        aPourResponsable="//@personne[nom='Dr%20Aminou',prenom='Kalidou']"/>
+    <formation
+        nom="Licences fondamentale généralité"
+        aPourResponsable="//@personne[nom='Dr%20Tapamo',prenom='Hyppolite']">
+      <niveau
+          id_niveau="1">
+        <semestre
+            id_semestre="1">
+          <ue
+              nom_ue="Introduction à l’algorithmique"
+              EstDispenser="//@personne[nom='Pr%20Atsa',prenom='Etoundi']"
+              codeUE="INF1011"/>
+          <ue
+              nom_ue="Introduction à l’Architecture des ordinateurs"
+              EstDispenser="//@personne[nom='Dr%20Tapamo',prenom='Hyppolite']"
+              codeUE="INF1021"/>
+          <ue
+              nom_ue="Programmation structurée en C"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1031"/>
+        </semestre>
+        <semestre
+            id_semestre="2">
+          <ue
+              nom_ue="Introduction aux Structures de données"
+              EstDispenser="//@personne[nom='Dr%20Fidel',prenom='Djiomekon']"
+              codeUE="INF1042"/>
+          <ue
+              nom_ue="Introduction aux réseaux"
+              codeUE="INF1O52"/>
+        </semestre>
+      </niveau>
+      <description
+          text="OBJECTIFS DE LA FORMATION&#xA;Cette licence vise le double objectif de poursuite d’études et de formation professionnelle.&#xA;L’informatique est une discipline jeune aux multiples facettes, dont les métiers sont en constante&#xA;évolution et en interaction avec les sciences connexes à l'informatique. Le parcours Informatique&#xA;propose à la fois des unités d'enseignement fondamentales (mathématiques, algorithmique,&#xA;langages de programmation issus des principaux paradigmes, outils formels, automates,&#xA;cryptographie), ainsi que des unités d'enseignement ouvrant à une professionnalisation plus&#xA;immédiate (systèmes informatiques, web, bases de données, programmation et conception&#xA;orientées objet, réseaux, projets de développement). La relative pluridisciplinarité des premières&#xA;années est une étape indispensable. Elle garantit une formation scientifique large, une ouverture&#xA;d’esprit et une qualité du socle sur lequel l’étudiant fonde ses connaissances informatiques, selon&#xA;deux approches : une fondamentale et l’autre plus technique.&#xA;COMPÉTENCES ACQUISES&#xA; Analyse, modélisation d’un problème, conception et mise en œuvre d’une solution&#xA;informatique adaptée en choisissant des outils adéquats.&#xA; Conception d’IHM, d’applications Web, de systèmes d’information.&#xA; Utilisation de différents langages de programmation et systèmes d’exploitation.&#xA; Apprentissage des architectures matériels et des réseaux.&#xA; Configuration des équipements réseaux&#xA; Déploiement des applications réseaux&#xA; Compétences scientifiques non informatique (mathématiques, physiques et/ou&#xA;électronique) en première année.&#xA;CONDITIONS D'ACCÈS&#xA;Les étudiants sont admis au cycle de licence d'Informatique aux niveaux 1, 2 ou 3. Accès en 1ère&#xA;année licence (L1) : Baccalauréat Scientifique (dans l'ordre de préférence suivant ; C, E, TIC, D avec&#xA;une bonne note en mathématiques), GCE Advanced Level in two science subjects incluant les&#xA;mathématique et excluant la religion&#xA;Accès en 2ème année (L2) : Étudiants ayant au moins 45 crédits (ECTS) au L1&#xA;Accès en 3ème année (L3) : Étudiants ayant validé les 120 crédits (ECTS) des niveaux 1 et 2.&#xA;DÉBOUCHÉS&#xA;Tel qu’il est conçu, le programme de la licence d'Informatique permet aux étudiants de poursuivre&#xA;leurs études au cycle Master ou dans une école d'ingénieur ou d’envisager d’entrer dans la vie&#xA;professionnelle avec des connaissances tant pratiques que théoriques leur permettant de&#xA;s’adapter aux grands domaines de l’informatique et de ses applications. Les titulaires du diplôme&#xA;peuvent occuper des emplois tel que : concepteur ou développeur d’applications, programmeur,&#xA;adjoint ou assistant d’ingénieur ou de chef de projet."
+          titre="Licences Fonda"/>
+    </formation>
+    <formation
+        nom="Professionelle ICT"/>
+  </departement>
+</ppuy1:PPUY1>

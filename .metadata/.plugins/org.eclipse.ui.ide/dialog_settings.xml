@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.emf.codegen.ecore.ui.EmptyProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.emf.codegen.ecore.ui.wizardCategory"/>
+		</list>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/nabia6/eclipse-workspace/acceleo.generate"/>
+			<item value="/home/nabia6/eclipse-workspace/acceleo.generation"/>
+			<item value="/home/nabia6/eclipse-workspace"/>
+			<item value="/home/nabia6/eclipse-workspace/nouveau/projet-master"/>
+			<item value="/home/nabia6/eclipse-workspace/nouveau/MOKALLO_idm20_project-master/MOKALLO_idm20_project-master"/>
+			<item value="/home/nabia6/eclipse-workspace/nouveau"/>
+			<item value="/home/nabia6/eclipse-workspace/projetIdmPortailP"/>
+			<item value="/home/nabia6/eclipse-workspace/MOKALLO_idm20_project-master/MOKALLO_idm20_project-master"/>
+			<item value="/home/nabia6/eclipse-workspace/MOKALLO_idm20_project-master"/>
+			<item value="/home/nabia6/eclipse-workspace/projetIdmPortailPedadogique"/>
+			<item value="/home/nabia6/eclipse-workspace/projet_idm"/>
+			<item value="/home/nabia6/eclipse-workspace/projet-master"/>
+			<item value="/home/nabia6/Bureau/IDM-24d2888e5adbc119e6eeeeb90bf6bf98daf4f10"/>
+			<item value="/home/nabia6/Bureau/IDM-24d2888e5adbc119e6eeeeb90bf6bf98daf4f10d"/>
+			<item value="/home/nabia6/Bureau/M1ICE-idm-metamodel-master"/>
+			<item value="/home/nabia6/Bureau/projetIDM-markdown2bootstrap-master"/>
+		</list>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/home/nabia6/Bureau/MOKALLO_idm20_project-master"/>
+			<item value="/home/nabia6/Bureau/M1ICE-idm-metamodel-master"/>
+			<item value="/home/nabia6/Bureau/projetIDM-markdown2bootstrap-master"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item key="OUTSIDE_LOCATION" value="/home/nabia6/eclipse-workspace/projetIdmPortailP"/>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="385"/>
+		<item key="DIALOG_Y_ORIGIN" value="0"/>
+		<item key="DIALOG_WIDTH" value="525"/>
+		<item key="DIALOG_HEIGHT" value="601"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode path=&quot;/projetIdmPortailP/bootstrapModel/model/bootstrap.xmi&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;infoNode path=&quot;/projetIdmPortailP/ppuy1Model/metamodels/PPUY1.xmi&quot; type=&quot;1&quot;/&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;"/>
+		<item key="ShowDerived" value="true"/>
+		<item key="FilterByLocation" value="false"/>
+		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="347"/>
+			<item key="DIALOG_Y_ORIGIN" value="33"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+		</section>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="293"/>
+		<item key="DIALOG_Y_ORIGIN" value="166"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+</section>

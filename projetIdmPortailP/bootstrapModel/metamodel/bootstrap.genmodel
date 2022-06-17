@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/projet_idm/src" modelPluginID="projet_idm" modelName="Bootstrap"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>bootstrap.ecore</foreignModel>
+  <genPackages prefix="Bootstrap" disposableProviderFactory="true" ecorePackage="bootstrap.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="bootstrap.ecore#//Size">
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Size/DEFAULT"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Size/SMALL"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Size/LARGE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="bootstrap.ecore#//Color">
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/DARK"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/PRIMARY"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/SECONDARY"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/SUCCESS"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/INFO"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/WHITE"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/WARNING"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/DANGER"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Color/LIGHT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="bootstrap.ecore#//Alignement">
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Alignement/CENTER"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Alignement/TOP"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Alignement/BOTTOM"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Alignement/LEFT"/>
+      <genEnumLiterals ecoreEnumLiteral="bootstrap.ecore#//Alignement/RIGHT"/>
+    </genEnums>
+    <genClasses ecoreClass="bootstrap.ecore#//Italic"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Background">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//Background/color"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//Text/text"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//HorizontalLine"/>
+    <genClasses ecoreClass="bootstrap.ecore#//HorizontalList"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Disabled"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//ContainableTextElement"/>
+    <genClasses ecoreClass="bootstrap.ecore#//BadgeStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//BadgeStyle/color"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Display2"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Page">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//Page/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Page/pagecontents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//BadgeProperty"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//AlertProperty"/>
+    <genClasses ecoreClass="bootstrap.ecore#//FluidContainer"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//ListProperty"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//General"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Strong"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Container/pagecontents"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Display3"/>
+    <genClasses ecoreClass="bootstrap.ecore#//ButtonSize">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//ButtonSize/size"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//DisplayProperty"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Vertical"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Link">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Link/linkproperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Link/buttonproperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Link/badgeproperties"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Paragraphe"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Image"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//TextPageContent"/>
+    <genClasses ecoreClass="bootstrap.ecore#//LinkBrand"/>
+    <genClasses ecoreClass="bootstrap.ecore#//AlertAnimated"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Active"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//PropertyClass"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Tbody"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Tfoot"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//ButtonProperty"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Table/tablesections"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//TextContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//TextContainer/textelements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//TextContainer/color"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//TextContainer/emphasis"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//BadgePill"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Navigation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Navigation/listelement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Navigation/navbar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Navigation/links"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Basic"/>
+    <genClasses ecoreClass="bootstrap.ecore#//ListItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//ListItem/listitemelements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//ListItem/active"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//UnOrderedList"/>
+    <genClasses ecoreClass="bootstrap.ecore#//AlertLink"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//ListElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//ListElement/listitems"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//ListElement/listproperty"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//BorderProperty"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Border"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Button">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Button/buttonproperties"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//TableCell">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//TableCell/alignment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//TableCell/span"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Title">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//Title/level"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//Title/displayproperties"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//ListItemElement"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//Emphasis"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Display4"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//CompositeTextElement"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//TextNested"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Thead"/>
+    <genClasses ecoreClass="bootstrap.ecore#//OrderList"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//TextElements"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//UrlBasedLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//UrlBasedLink/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//UrlBasedLink/title"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//MargesProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//MargesProperty/level"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//MargesProperty/alignement"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//BasicList"/>
+    <genClasses ecoreClass="bootstrap.ecore#//AlertStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//AlertStyle/color"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//Centered"/>
+    <genClasses ecoreClass="bootstrap.ecore#//ButtonLink"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Brand"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Display1"/>
+    <genClasses ecoreClass="bootstrap.ecore#//TableRow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//TableRow/tablecells"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//TableRow/generals"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//NavBarProperty"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Padding"/>
+    <genClasses ecoreClass="bootstrap.ecore#//Margin"/>
+    <genClasses ecoreClass="bootstrap.ecore#//ColoredBorder">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//ColoredBorder/color"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//ButtonState"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//TextContainable"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//LinkProperty"/>
+    <genClasses ecoreClass="bootstrap.ecore#//FixContainer"/>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//PageContent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//PageContent/generalProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="bootstrap.ecore#//ButtonStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bootstrap.ecore#//ButtonStyle/color"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="bootstrap.ecore#//TableSection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//TableSection/tablerows"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bootstrap.ecore#//TableSection/generals"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

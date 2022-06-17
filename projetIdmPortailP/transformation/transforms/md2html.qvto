@@ -1,0 +1,231 @@
+
+modeltype ppuymm "strict" uses ppuy1('http://www.ppuy1.com');
+modeltype usdmm "strict" uses html_model('www.html_model.cm');
+
+transformation block2block(in md : ppuymm, out usd : usdmm);
+/**
+* This module ensures  transformation to usd
+*/
+	
+main() {
+	md.rootObjects()[PPUY1] -> map document2Page();
+}
+
+/**
+* Map a  Document element to usd Page element.
+*/
+mapping ppuymm::PPUY1::document2Page() :usdmm::Page  {
+	title := self.nom;	
+}
+				
+					
+// =========== Start transformation block to pagecontent ===========//
+/**
+* Map a  Block element to usd PageContent element.
+*/
+abstract mapping ppuymm::PPUY1::block2PageContent() : usdmm::PageContent {}
+
+// =========== Start transformation paragraph to paragraph or Navigation ===========//
+/**
+* Map a  Paragraph element to usd Paragraph element when paragraph contains any paragraph link
+* which extends textContainerMd2TextContainerUsd mapper.
+*/
+mapping ppuymm::Description::paragraphMd2ParagraphUsd() : usdmm::Paragraph 
+	inherits ppuymm::Description::textContainerMd2TextContainerUsd{}
+
+/**
+* Map a  Paragraph element to usd Paragraph element 
+* which extends textContainerMd2TextContainerUsd mapper.
+*/
+mapping ppuymm::UE::paragraphMd2ParagraphUsdIfContentNavigationLink() : usdmm::Navigation 
+	{
+		var linkElements := self.nom_ue;
+		var navLink := self.nom_ue; 
+		textContent := navLink;
+	}
+
+// =========== Start transformation TextConatiner to TextContainer ===========//
+
+/**
+* Abstract map for mapping a  TextContainer element to usd TextContainer element
+* which extends block2PageContent mapper.
+*/
+abstract mapping ppuymm::Description::textContainerMd2TextContainerUsd() : usdmm::TextContainer{
+		  var textElements = self.titre;
+}
+
+// =========== Start transformation Title to Title ===========//
+
+/**
+* Map a  Title element to usd Title element 
+* which extends textContainerMd2TextContainerUsd mapper.
+*/
+mapping ppuymm::Description::titleMd2TitleUsd() : usdmm::Title 
+	inherits ppuymm::Description::textContainerMd2TextContainerUsd{
+		level := 1;
+}
+
+// =========== Start transformation List to ListElement ===========//
+
+/**
+* Mapper from  ListItem element to usd ListItem element.
+*/
+mapping ppuymm::UE::listItemMd2ListItemUsd() : usdmm::ListItem {}
+
+// =========== Start transformation Table to Table ===========//
+			
+/**
+* Abstarct mapper from  TableSection element to usd TableSection element.
+*/
+abstract mapping ppuymm::UE::tableSectionMd2TableSectionUsd() : usdmm::TableSection {
+	rows += self.calendrier -> map tableRowMd2TableRowUsd();
+}
+
+/**
+* Mapper from  TableHead element to usd TableHead element 
+* which extends tableSectionMd2TableSectionUsd mapper.
+*/
+mapping ppuymm::UE::tableHeadMd2TableHeadUsd() : usdmm::TableHead 
+	inherits ppuymm::UE::tableSectionMd2TableSectionUsd {}
+
+/**
+* Mapper from  TableSection element to usd TableSection element 
+* which extends tableSectionMd2TableSectionUsd mapper.
+*/
+mapping ppuymm::UE::tableSeparatorMd2TableSeparatorUsd() : usdmm::TableSeparator 
+	inherits ppuymm::UE::tableSectionMd2TableSectionUsd {}
+
+/**
+* Mapper from TableSection md element to usd TableSection element which make disjunction beetwen 
+* tableHeadMd2TableHeadUsd and tableHeadMd2TableHeadUsd.
+*/
+mapping ppuymm::UE::constructTableSection() : usdmm::TableSection 
+	disjuncts ppuymm::UE::tableHeadMd2TableHeadUsd, 
+				ppuymm::UE::tableSeparatorMd2TableSeparatorUsd{	
+}
+
+/**
+* Mapper from  TableRow element to usd TableRow element 
+*/
+mapping ppuymm::Calendrier::tableRowMd2TableRowUsd() : usdmm::TableRow {}
+
+				
+// =========== Start transformation TextElement to TextElement ===========//
+
+/**
+* Abstract mapper from  TextElement element to usd TextElement element
+*/
+abstract mapping ppuymm::Description::textElementMd2TextElementUsd() : usdmm::TextElement {}
+
+// =========== Start transformation UrlBasedLink to UrlBasedLink ===========//
+
+/**
+* Abstract mapper from  UrlBasedLink element to usd UrlBasedLink element 
+* wich extends compositeTextElementMd2CompositeTextElementUsd mapper.
+*/
+abstract mapping ppuymm::Ressource::urlBasedLinkMd2UrlBasedLinkUsd() : usdmm::UrlBasedLink 
+	{
+		url := self.fichier;
+		title := self.fichier;
+	}
+
+// =========== Start transformation Link to Link ===========//
+
+/**
+* Mapper from  Link element to usd Link element 
+* wich extends urlBasedLinkMd2UrlBasedLinkUsd mapper.
+*/
+mapping ppuymm::Ressource::linkMd2LinkUsd() : usdmm::Link
+	inherits ppuymm::Ressource::urlBasedLinkMd2UrlBasedLinkUsd
+ {
+	
+}
+
+
+/**
+* Mapper from  Link element to usd button element 
+* wich extends textElementMd2TextElementUsd mapper.
+*/
+mapping ppuymm::UE::linkButtonMd2ButtonUsd() : usdmm::Button 
+	{
+		type := self.nom_ue;
+	}
+	
+/**
+* Mapper from  Link element to usd Navigation element 
+*/	
+mapping ppuymm::Departement::linkMd2NavigationUsd() : usdmm::Navigation 
+{
+	textContent := self.nom;
+}
+
+
+/**
+* A mapper to map link md to ListItem usd which always contains link
+**/
+mapping ppuymm::Departement::linkMd2NavElementUsd() : usdmm::ListItem 
+	{
+	elements := object usdmm::Link {
+		url := self.nom;
+		title := self.nom;
+	} 	
+}
+
+// =========== Start transformation Text to Text ===========//
+
+/**
+* Mapper from  Text element to usd Text element 
+* wich extends textElementMd2TextElementUsd mapper.
+*/
+mapping ppuymm::Description::textMd2TextUsd() : usdmm::Text 
+	inherits ppuymm::Description::textElementMd2TextElementUsd
+	{
+		text := self.text;
+	}
+
+// =========== Start transformation CompositeTextElement to CompositeTextElement ===========//
+
+/**
+* Abstract mapper from  CompositeTextElement element to usd CompositeTextElement element
+*/
+abstract mapping ppuymm::PPUY1::compositeTextElementMd2CompositeTextElementUsd() : usdmm::CompositeTextElement {}
+				
+/**
+* An helper to get a navigation first link Element
+*/
+helper ppuymm::Departement::getNavigationElement() : ppuymm::Formation {}
+
+/**
+* An helper to check if given link is button. 
+*/
+helper ppuymm::Ressource::isLinkButton() : Boolean {
+	var textElem := self.allSubobjectsOfType(Text) -> 
+						selectOne(t | 
+								(t.text.startsWith('[') or 
+								(t.text.startsWith('properties') and t.text.find(":") > 0)) 
+								and t.text.find("btn") > 0 and self.fichier = "#");
+	return textElem <> null;	
+}
+
+/**
+* An helper to check if given String contains properties. 
+*/
+helper String::containsProperties() : Boolean {
+	return self.startsWith('properties') and self.find(":") > 0;
+}
+
+/**
+* An helper to check if given link is button. 
+*/
+helper ppuymm::Departement::isNavigationLink() : Boolean {
+	var textElem := self.allSubobjectsOfType(Text) -> selectOne(t | (t.text.startsWith('[') or (t.text.containsProperties())) and t.text.find("nav") > 0);
+	return textElem <> null;	
+}
+
+/**
+* An helper to check if given Paragraph contains Link reference Navigation. 
+*/
+helper ppuymm::Departement::isThereNavigationElement() : Boolean {
+	var linkElement := self.subobjectsOfType(ppuymm::Formation);
+	return linkElement <> null;
+}
