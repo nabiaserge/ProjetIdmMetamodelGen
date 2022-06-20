@@ -12,7 +12,7 @@ main() {
 }
 
 /**
-* Map a  ppuy element to usd Page element.
+* Map a  Document element to usd Page element.
 */
 mapping ppuymm::PPUY1::document2Page() :usdmm::Page  {
 	title := self.nom;	

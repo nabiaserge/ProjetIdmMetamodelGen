@@ -1127,3 +1127,6 @@ Caused by: java.net.MalformedURLException: no protocol: ../../../.p2/pool/
 
 !ENTRY org.eclipse.equinox.p2.repository 2 0 2022-06-17 00:33:57.690
 !MESSAGE Using unsafe http transport to retrieve http://bryanhunt.github.com/mongo-emf/releases/0.7.1/, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-06-18 12:05:48.741
+!MESSAGE The workspace will exit with unsaved changes in this session.
